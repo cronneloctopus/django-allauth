@@ -19,6 +19,10 @@ class LinkedInAPI(OAuth):
               'email-address',
               'picture-url',
               'public-profile-url']
+    # instantiate provider and get scope
+    provider = LinkedInProvider()
+    if 'r_fullprofile' in provider.get_scope():
+        fields.extend(['skills', 'summary', 'headline'])
 
     def get_user_info(self):
         url = self.url + ':(%s)' % ','.join(self.fields)
